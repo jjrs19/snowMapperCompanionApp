@@ -145,7 +145,7 @@ public class GpsTrackerActivity extends ActionBarActivity implements LocationLis
         if(location == null)
             return;
 
-        final String url = "http://localhost:8080";
+        final String url = "http://128.206.202.34:8080/services/gps";
 
         final String timestamp = Long.toString(location.getTime());
         final String latitude = Double.toString(location.getLatitude());
@@ -154,13 +154,12 @@ public class GpsTrackerActivity extends ActionBarActivity implements LocationLis
         final String heading = Float.toString(location.getBearing());
 
         HashMap<String, String> params = new HashMap<String, String>();
-        params.put("uuid", "test");
-        params.put("gps_timestamp", timestamp);
-        params.put("gps_latitude", latitude);
-        params.put("gps_longitude", longitude);
-        params.put("gps_speed", speed);
-        params.put("gps_heading", heading);
-
+//        params.put("uuid", "test");
+        params.put("plowedPoint", latitude+','+longitude);
+        params.put("plowedAt", timestamp);
+//        params.put("gps_longitude", longitude);
+//        params.put("gps_speed", speed);
+//        params.put("gps_heading", heading);
         JsonObjectRequest postRequest = new JsonObjectRequest(url, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override
